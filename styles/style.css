@@ -140,7 +140,8 @@ a{
 	font-size: 50px;
 	font-weight: 600;
 	color: #111010;
-	padding-top: 80px;
+	padding-top: 50;
+	padding-bottom: 50;
 }
 
 .tab-titles{
