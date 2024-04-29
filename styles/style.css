@@ -272,6 +272,7 @@ a{
 	color: #111010;
 	transition: background 0.5s;
 	background: #7C1034;
+	color: white;
 
 }
 
@@ -326,6 +327,7 @@ contact-left{
 .btn.btn2{
 	display: inline-block;
 	background: #7C1034;
+	color: white;
 }
 
 .contact-right form{
