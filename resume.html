@@ -34,33 +34,26 @@
     <li class="navlist"><a href="index.html#portfolio">Portfolio</a></li>
     <li class="navlist"><a href="index.html#about">About</a></li>
     <li class="navlist"><a href="index.html#contact">Contact</a></li>
-  
+    <li class="navlist"><a href="index.html#resume">Resume</a></li>
     <i class="fas fa-times" onclick="closemenu()"></i>
 </ul>
+
 
         <i class="fas fa-bars" onclick="openemenu()"></i>
       </nav>
     </div>
   </header>
 
+  <!DOCTYPE html>
+
+<body>
+    <embed src="images/my-cv.pdf" width="100%" height="800px">
+</body>
+
+
 <div id="image-container"></div>
 
-<script>
-  // Function to load images sequentially
-  function loadImages() {
-    var container = document.getElementById('image-container');
-    var imagePath = 'images/project4/';
-    for (var i = 1; i <= 56; i++) {
-      var img = document.createElement('img');
-      img.src = imagePath + i + '.png';
-      img.className = 'image3';
-      container.appendChild(img);
-    }
-  }
 
-  // Call the function to load images when the page is loaded
-  window.onload = loadImages;
-</script>
 <script src="scripts.js"></script> 
 </body>
 </html>
