@@ -373,7 +373,7 @@ a{
 }
 
 .container-style {
-    background: linear-gradient(to bottom, #d5eff2, rgba(255,255,255,1)); /* Gradient colors */
+    background: linear-gradient(to top, #d5eff2, rgba(255,255,255,1) ); /* Gradient colors */
     display: inline-block; /* Ensure the gradient only covers the text */
     border-radius: 15px; /* Adjust the value to control the curvature */
     padding: 10px 20px; /* Add padding for spacing */
