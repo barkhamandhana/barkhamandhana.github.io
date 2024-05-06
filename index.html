@@ -14,17 +14,17 @@
 <body>
 	<header>
 		<div class="container">
-			<nav>
+			<nav id="nav">
+				<a href="index.html">
 				<img src="images/logo.png" alt="bmm" class="logo">
-				<ul class="navigation">
+			</a>
+				<i class="fas fa-bars hamburger" onclick="openmenu()"></i>
+				<ul class="navigation" id="navigation">
     <li class="navlist"><a href="index.html#portfolio">Portfolio</a></li>
     <li class="navlist"><a href="index.html#about">About</a></li>
     <li class="navlist"><a href="index.html#contact">Contact</a></li>
     <li class="navlist"><a href="index.html#resume">Resume</a></li>
-    <i class="fas fa-times" onclick="closemenu()"></i>
 			</ul>
-
-				<i class="fas fa-bars" onclick="openemenu()"></i>
 			</nav>
 		</div>
 	</header>
@@ -255,6 +255,22 @@ function closemenu() {
                 workGroup.classList.toggle('hidden');
             });
             document.getElementById('see-more-btn').style.display = 'none';
+        }
+    </script>
+    <script>
+        // Function to open the navigation menu
+        function openmenu() {
+            var navigation = document.getElementById("navigation");
+            navigation.style.display = "block";
+            var nav = document.getElementById("nav");
+            nav.style.display = "block";
+        }
+        // Function to close the navigation menu
+        function closemenu() {
+            var navigation = document.getElementById("navigation");
+            navigation.style.display = "none";
+             var nav = document.getElementById("nav");
+            nav.style.display = "none";
         }
     </script>
 <script src="scripts.js"></script> 

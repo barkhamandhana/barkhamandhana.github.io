@@ -57,6 +57,11 @@ header {
 	width: 50%;
 }
 
+        .hamburger {
+            display: none; /* Initially hide hamburger icon for larger screens */
+            cursor: pointer;
+        }
+
 .navigation{
 	list-style: none;
 	display: flex;
@@ -569,6 +574,18 @@ i.fas.fa-bars {
 		margin-top: 25%;
 		line-height: 2;
 	}
+	.navigation {
+            display: none;
+        }
+
+        .nav {
+        	display: none;
+        }
+        /* CSS for styling the hamburger icon */
+        .hamburger {
+            display: block;
+            cursor: pointer;
+        }
    .navigation {
    
     position: fixed;
