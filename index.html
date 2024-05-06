@@ -34,19 +34,51 @@
 			<!---------------------portfolio-------------------------------->
    <div id="portfolio">
     <div class="container">
-        <h1 class="subtitle">Portfolio</h1>
-
-        <div class="work-list">
-            <div class="work">
-                <img src="images/work1.png">
-            </div> 
-            <div class="work">
-							<img src="images/work2.png">
-            </div>
-            <div class="work">
-                <img src="images/work3.png">
-            </div>
-        </div> 
+        <h1 class="portfolio-title">Portfolio</h1>
+				<div class="work-list">
+				    <div class="work-group">
+				        <div class="work">
+				            <img src="images/work1.png" class="image">
+				                    <div class="overlay">
+									            <div class="text-container">
+									                <h3 class="title">Agrivisionary</h3>
+									                <p class="subtitle">AI based Forecast For Increasing Agriculture Revenue</p>
+									            </div>
+									        	</div>
+				        </div> 
+				        <div class="work">
+				            <img src="images/work4.png" class="image">
+				            				<div class="overlay">
+									            <div class="text-container">
+									                <h3 class="title">Furry Heaven</h3>
+									                <p class="subtitle">An App for pet owners</p>
+									            </div>
+									        	</div>
+				        </div>
+				    </div>
+				    <div class="work-group">   
+				        <div class="work">
+				        	<a href="healthylicious.html">
+				            <img src="images/work2.png" class="image">
+				          </a>
+				            		<div class="overlay">
+									            <div class="text-container">
+									                <h3 class="title">Healthylicious</h3>
+									                <p class="subtitle">Be Fit, Stay Healthy</p>
+									            </div>
+									    </div>
+				        </div>
+				         <div class="work">
+				            <img src="images/work3.png" class="image">
+				            		<div class="overlay">
+									            <div class="text-container">
+									                <h3 class="title">Puranpoli Restaurant</h3>
+									                <p class="subtitle">A Rebranding story for indian restaurant</p>
+									            </div>
+									    </div>
+				        </div>
+				    </div>
+				</div>
 
     </div> 
     <div>
@@ -56,14 +88,13 @@
 
 		<!---------------------about-------------------------------->
 
-		<div id="about">
 			<div class="container">
+			<h1 class="about-me-title">About Me</h1>
 				<div class="row">
 					<div class="about-col-1">
 						<img src="images/bmm.png" alt="barkha">
 					</div>
 					<div class="about-col-2">
-						<h1 class="sub-title">About Me</h1>
 						
 					<p>Welcome to my portfolio! I'm thrilled to have this opportunity to introduce myself and share my unique journey in the realm of UI/UX design.</p><br>
 
@@ -80,20 +111,20 @@
 							<p class="tab-links" onclick="opentab('education')">Education</p>
 						</div>
 						<div class="tab-contents active-tab" id="skills">
-							<ul>
+							<ul class="container-style">
 								<li><span>Figma, Illustrator, After Effects, Photoshop, Premier Pro, InDesign, HTML, CSS Javascript </li>
 								
 							</ul>
 						</div>
 						<div class="tab-contents" id="experience">
-							<ul>
+							<ul class="container-style">
 								<li><span>Sapiens (3+ years)</li>
 								<p>During my time as an associate consultant at a product-based company, I had the privilege of working with a talented team on various projects. This experience allowed me to cultivate a deep understanding of the product development lifecycle and provided me with valuable insights into the importance of creating exceptional user experiences. I was actively involved in conducting user research, prototyping, and collaborating closely with developers and stakeholders to ensure seamless and user-friendly interfaces.</p>
 								
 							</ul>
 						</div>
 						<div class="tab-contents" id="education">
-							<ul>
+							<ul class="container-style">
 								<li><span>MA Interaction & UI/UX Design</span><br>Academy of Arts, San Francisco </li>
 								<li><span>MBA</span><br>IBS Hyderabad, India</li>
 								
@@ -114,6 +145,7 @@
 <div id="contact">
 	<div class="contact">
 	<div class="container">
+		<h1 class="about-me-title">Contact Me</h1>
 		<div class="row">
 			<div class="contact-left">
 				<h1 class="sub-title">Contact Me</h1>
@@ -193,3 +225,4 @@ function closemenu() {
       .catch(error => console.error('Error!', error.message))
   })
 </script>
+<script src="scripts.js"></script> 

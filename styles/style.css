@@ -68,7 +68,7 @@ header {
 
 
 a{
-	color: black;
+	color: #7c1034;
 	text-decoration: none;
 
 	
@@ -127,10 +127,30 @@ a{
 	flex-basis: 35%;
 }
 
-.about-col-1 img{
-	width:100%;
-	border-radius: 15px;
+.about-col-1 {
+    position: relative; /* Required for absolute positioning of pseudo-element */
 }
+
+.about-col-1::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, #7c1034 40%, #7c1034 10%, rgba(124, 16, 52, 0.6)); /* Gradient colors */
+   z-index: -2; /* Ensure the gradient is above the image */
+   border-radius: 30px;
+}
+
+.about-col-1 img {
+    display: block; /* Make sure the image is a block element */
+    width: 100%;
+    height: auto;
+    z-index: 2; /* Ensure the image is above the gradient */
+    border-radius: 15px;
+}
+
 
 .about-col-2{
 	flex-basis: 60%;
@@ -156,6 +176,7 @@ a{
 	font-weight: 500;
 	cursor:pointer;
 	position: relative;
+	color: #7c1034;
 }
 
 .tab-links::after{
@@ -216,10 +237,17 @@ a{
 
 
 }
-.subtitle{
+.portfolio-title{
 	padding-top: 160px;
 	font-size: 50px;
 }
+
+.about-me-title{
+	padding-bottom: 40px;
+	font-size: 50px;
+	color: #111010;
+}
+
 
 .work{
 	border-radius: 10px;
@@ -227,11 +255,21 @@ a{
 	overflow: hidden;
 }
 
+.work-group {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px; /* Adjust spacing between groups as needed */
+}
+
 .work img{
-	width: 100%;
+	 width: auto; /* Ensures the image width is automatically determined */
+    height: auto; /* Ensures the image height is automatically determined */
+    max-width: 90%; /* Limits the maximum width of the image to the container width */
+    max-height: 90%; /* Limits the maximum height of the image to the container height */
+/*	width: 100%;
 	border-radius: 10px;
 	display: block;
-	transition: transform 0.5s;
+	transition: transform 0.5s;*/
 }
 
 .layer h3{
@@ -242,7 +280,7 @@ a{
 
 .layer a{
 	margin-top: 20px;
-	color: #111010;
+	color: #7c1034;;
 	text-decoration: none;
 	font-size: 18px;
 	line-height: 60px;
@@ -252,24 +290,122 @@ a{
 	border-radius: 50%;
 	text-align: center;
 }
-
+/*
 .work:hover img{
 	transform: scale(1.5);
 }
 
 .work:hover .layer{
 	height: 100%;
+}*/
+
+.work {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
 }
+
+.work img {
+    width: 100%;
+    height: auto;
+    transition: filter 0.5s;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%; /* Align overlay to the left half of the image */
+    height: 50%;
+    opacity: 0;
+    transition: opacity 0.5s;
+    display: flex;
+    align-items: center;
+    padding: 20px; /* Add padding for better readability */
+}
+
+.work:hover::after {
+    opacity: 0.2; /* 20% transparency */
+}
+
+.work:hover img {
+    filter: blur(5px) brightness(80%) saturate(120%);
+    transition: filter 0.3s ease; /* Smooth transition */
+
+}
+
+.work:hover .overlay {
+    opacity: 1;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 10px; /* Add some space between title and subtitle */
+}
+
+.subtitle {
+    font-size: 18px;
+}
+
+.work .text-container {
+    background: linear-gradient(to bottom, #d5eff2, rgba(255,255,255,1)); /* Gradient colors */
+    display: inline-block; /* Ensure the gradient only covers the text */
+    border-radius: 15px; /* Adjust the value to control the curvature */
+    padding: 10px 20px; /* Add padding for spacing */
+      color: #7c1034;; 
+    font-family: 'Comic Sans MS', cursive; 
+}
+
+.container-style {
+    background: linear-gradient(to bottom, #d5eff2, rgba(255,255,255,1)); /* Gradient colors */
+    display: inline-block; /* Ensure the gradient only covers the text */
+    border-radius: 15px; /* Adjust the value to control the curvature */
+    padding: 10px 20px; /* Add padding for spacing */
+      color: #7c1034;; 
+    font-family: 'Comic Sans MS', cursive; 
+}
+
+.work .title,
+.work .subtitle {
+    margin: 0; /* Remove default margin */
+}
+
+/* Typing animation */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+}
+
+.work .title::after,
+.work .subtitle::after {
+    content: '';
+    display: inline-block;
+    vertical-align: bottom;
+    width: 0;
+    overflow: hidden;
+    animation: typing 1.5s steps(20, end) forwards;
+}
+
+.work .title::after {
+    animation-delay: 0.5s; /* Delay for the typing effect */
+}
+
+.work .subtitle::after {
+    animation-delay: 1s; /* Delay for the typing effect */
+}
+
+
 
 .btn{
 	display: block;
 	margin: 50px auto;
 	width: fit-content;
-	border: 1px solid #111010;
+	border: 1px solid #d5eff2;
 	padding: 14px 50px;
 	border-radius: 6px;
 	text-decoration: none;
-	color: #111010;
+	color: #d5eff2;
 	transition: background 0.5s;
 	background: #7C1034;
 	color: white;
@@ -277,7 +413,12 @@ a{
 }
 
 .btn:hover{
-	background: #111010;
+	background: #d5eff2;
+
+}
+
+.btn2:hover{
+	background: #d5eff2;
 
 }
 
@@ -298,7 +439,7 @@ contact-left{
 }
 
 .contact-left p i{
-	color: #111010;
+	color: #d5eff2;
 	margin-right: 15px;
 	font-size: 25px;
 
@@ -320,7 +461,7 @@ contact-left{
 }
 	
 .social-icons a:hover{
-	color: #111010;
+	color: #d5eff2;
 	transform: translateX(-5px);
 }
 
@@ -398,7 +539,7 @@ i.fas.fa-bars {
 	}
 
 	.text h1 span {
-		color: #111010;
+		color: #d5eff2;
 		font-size: 12px;
 		margin-top: 2%;
 		line-height: 1;
@@ -421,7 +562,7 @@ i.fas.fa-bars {
     width: 200px;
     height: 100vh;
     padding-top: 50px;
-    background: #111010; 
+    background: #d5eff2; 
     z-index: 2;
     transition: right 0.5s;
 }
@@ -429,7 +570,7 @@ i.fas.fa-bars {
     .nav ul li {
     	display: block;
     	margin: 25px;
-    	background: #111010; 
+    	background: #d5eff2; 
     }
 
     .nav ul. fas{
@@ -461,6 +602,7 @@ i.fas.fa-bars {
     .tab-links{
     	font-size: 16px;
     	margin-right: 20px;
+    	color: #7c1034;
 
     }
     .contact-left, .contact-right{
