@@ -86,12 +86,27 @@
 									   </a>
 				        </div>
 				    </div>
+
 				</div>
+								    <div class="work-group hidden">   
+				        <div class="work">
+				        	<a href="healthylicious.html">
+				            <img src="images/wip.jpeg" class="image">
+				         
+				            		<div class="overlay">
+									            <div class="text-container">
+									                <h3 class="title">Coming Soon</h3>
+									                <p class="subtitle">Work in progress</p>
+									            </div>
+									    </div>
+									     </a>
+				        </div>
+				    </div>
+				<div id="see-more-btn">
+                 <a class="btn" onclick="toggleWorkGroup()">See more</a>
+         </div>
 
     </div> 
-    <div>
-    	<a href="#" class="btn">See more</a>
-    </div>
 </div> 
 
 		<!---------------------about-------------------------------->
@@ -232,4 +247,14 @@ function closemenu() {
       .catch(error => console.error('Error!', error.message))
   })
 </script>
+    <script>
+        // Function to toggle visibility of additional work groups
+        function toggleWorkGroup() {
+            var additionalWorkGroups = document.querySelectorAll('.work-group.hidden');
+            additionalWorkGroups.forEach(function(workGroup) {
+                workGroup.classList.toggle('hidden');
+            });
+            document.getElementById('see-more-btn').style.display = 'none';
+        }
+    </script>
 <script src="scripts.js"></script> 

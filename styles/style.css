@@ -406,6 +406,9 @@ a{
     animation-delay: 1s; /* Delay for the typing effect */
 }
 
+ .work-group.hidden {
+            display: none;
+        }
 
 
 .btn{
