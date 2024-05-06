@@ -16,3 +16,26 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+var lastScrollTop = 0;
+var navbar = document.querySelector('header');
+var delta = 5;
+var navbarHeight = navbar.offsetHeight;
+
+window.addEventListener('scroll', function() {
+  var currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+  
+  if (Math.abs(lastScrollTop - currentScroll) <= delta) {
+    return;
+  }
+
+  if (currentScroll > lastScrollTop && currentScroll > navbarHeight) {
+    // Scroll down
+    navbar.classList.add('hide');
+  } else {
+    // Scroll up
+    navbar.classList.remove('hide');
+  }
+
+  lastScrollTop = currentScroll;
+});

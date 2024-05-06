@@ -31,6 +31,17 @@ header {
 	background-color: #FFFFFF;
 	z-index: 100; /* Ensure the header is above the content */
 }
+
+/* Hide the navbar */
+header.hide {
+  transform: translateY(-100%);
+}
+
+/* Transition effect */
+header {
+  transition: transform 0.3s ease;
+}
+
 .portfolio{
 	display: flex;
 	flex: 0 0 auto
@@ -457,11 +468,12 @@ contact-left{
 	color: #ababab;
 	display: inline-block;
 	transition: transform 0.5s;
+	color: #d5eff2;
 
 }
 	
 .social-icons a:hover{
-	color: #d5eff2;
+	color: #7C1034;
 	transform: translateX(-5px);
 }
 
