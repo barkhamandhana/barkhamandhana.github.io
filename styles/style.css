@@ -65,7 +65,7 @@ header {
 .navigation{
 	list-style: none;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-end;
 	margin: -32px;
 	flex-flow: row wrap;
 	flex: 1;
