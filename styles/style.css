@@ -414,7 +414,7 @@ a{
 
 
 .work .text-container {
-    background: white; /* Gradient colors */
+     /* Gradient colors */
     display: inline-block; /* Ensure the gradient only covers the text */
     border-radius: 15px; /* Adjust the value to control the curvature */
     padding: 10px 20px; /* Add padding for spacing */
