@@ -48,13 +48,17 @@
   </header>
 
 <div id="image-container"></div>
+<div class="image-container"> 
+    <a href="healthylicious.html"><img src="images/project1/navleft.png" class="navleft" alt="Nav Left"></a>
+    <a href="furry.html"><img src="images/project1/navright.png" class="navright" alt="Nav Right"></a>
+</div>
 
 <script>
   // Function to load images sequentially
   function loadImages() {
     var container = document.getElementById('image-container');
     var imagePath = 'images/project1/';
-    for (var i = 1; i <= 23; i++) {
+    for (var i = 0; i <= 20; i++) {
       var img = document.createElement('img');
       img.src = imagePath + i + '.png';
       img.className = 'image3';
