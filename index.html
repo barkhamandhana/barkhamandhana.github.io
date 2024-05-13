@@ -22,13 +22,14 @@
 				<a href="index.html">
 				<img src="images/logo.png" alt="bmm" class="logo">
 			</a>
-				<i class="fas fa-bars hamburger" onclick="openmenu()"></i>
-				<ul class="navigation" id="navigation">
-    <li class="navlist"><a href="index.html#portfolio">Portfolio</a></li>
-    <li class="navlist"><a href="index.html#about">About</a></li>
-    <li class="navlist"><a href="index.html#contact">Contact</a></li>
-    <li class="navlist"><a href="resume.html">Resume</a></li>
-			</ul>
+				<i id= "hb" class="fas fa-bars hamburger" onclick="openmenu()"></i>
+    <ul class="navigation" id="navigation">
+        <li class="navlist"><a href="index.html#portfolio" onclick="closemenu()">Portfolio</a></li>
+        <li class="navlist"><a href="index.html#about" onclick="closemenu()">About</a></li>
+        <li class="navlist"><a href="index.html#contact" onclick="closemenu()">Contact</a></li>
+        <li class="navlist"><a href="resume.html" onclick="closemenu()">Resume</a></li>
+        <i class="fas fa-times" onclick="closemenu()"></i>
+    </ul>
 			</nav>
 		</div>
 	</header>
@@ -229,19 +230,6 @@ function opentab(tabname) {
 	</script>
 
 	<script>
-		var navigation = document.querySelector(".navigation");
-
-function openmenu() {
-  navigation.style.right = "0";
-}
-
-function closemenu() {
-  navigation.style.right = "-200px";
-}
-
-	</script>
-
-	<script>
   const scriptURL = 'https://script.google.com/macros/s/AKfycbzyMUm74qiKmIfXz_xTjLppmb1gEZn81dJoXBfF56JDBGWhkaUPvExedIcrRMyEEVrpFw/exec'
   const form = document.forms['submit-to-google-sheet']
   const msg = document.getElementById("msg")
@@ -277,13 +265,21 @@ function closemenu() {
             navigation.style.display = "block";
             var nav = document.getElementById("nav");
             nav.style.display = "block";
+             navigation.style.right = "0";
+             var hb = document.getElementById("hb");
+            hb.style.display = "none";
         }
         // Function to close the navigation menu
         function closemenu() {
-            var navigation = document.getElementById("navigation");
+        	var nav = document.getElementById("nav");
+          nav.style.display = "flex";
+            
+        	var navigation = document.getElementById("navigation");
+            navigation.style.right = "-200px";
             navigation.style.display = "none";
-             var nav = document.getElementById("nav");
-            nav.style.display = "none";
+            var hb = document.getElementById("hb");
+            hb.style.display = "block";
+
         }
     </script>
 <script src="scripts.js"></script> 
