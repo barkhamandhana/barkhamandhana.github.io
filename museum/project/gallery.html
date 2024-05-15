@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home Page</title>
+	<link rel="stylesheet" type="text/css" href="styles/gallery.css">
+	<link rel="stylesheet" type="text/css" href="styles/tab.css">
+	<link rel="stylesheet" type="text/css" href="styles/carousel.css">
+ 	
+ 	
+    <script type="text/javascript" src="lib/jquery-3.6.4.min.js"></script>
+    <script type="text/javascript" src="lib/museum.js"></script>
+    
+    <link rel="stylesheet" href="https://use.typekit.net/ifd7vfe.css">
+
+</head>
+<body>
+	<header>
+		<div class="container">
+			
+			<div class="logo">
+				<h1>The National Gallery</h1>	
+			</div>
+
+			<ul class="navigation">
+				<li class="navlist"><a href="home.html">Home</li></a></li>
+				<li class="navlist"><a href="index.html">Art</li></a></li>
+				<li class="navlist"><a href="gallery.html">Gallery</li></a></li>
+				<li class="navlist"><a href="artist.html">Artist</li></a></li>
+			</ul>
+		</div>
+	</header> 
+	<main>
+	    <h2>The National Gallery</h2>
+	    <div>
+	    	<div class="carousel">
+	    		<div class="slides">
+	    			<div class="slide center">
+	    				 <img src="images/gallery.jpg" alt="gallery" width="65%">
+	    			</div>
+	    			<div class="slide">
+                    	 <img src="images/gallery1.jpg" alt="gallery1" width="65%">
+                	</div>
+                    <div class="slide">
+                    	 <img src="images/gallery2.jpg" alt="gallery2" width="65%">
+                	</div>
+	    			
+	    		
+	    		</div>
+	    		<div class=controls>
+	    			<div class="control-left">&lt</div>
+	    			<div class="control-right">&gt</div>
+	    			<div class="control-pagination">
+	    				<div class="control-dot">&bullet;</div>
+	    				<div class="control-dot">&bullet;</div>
+	    				<div class="control-dot">&bullet;</div>
+	    			</div>
+	    		</div>
+
+	    	</div>
+	    </div>
+	   
+	    <div class="tabgroup">
+			<div class="tablist">
+				<div class="tab active">About</div>
+	        	<div class="tab">Location</div>
+	         	<div class="tab">Hours</div>
+	         	<div class="tab">Contact</div>
+			</div>
+			<div class="contentlist">
+	            	<div class="content active"> 
+						<br>The National Gallery is an art museum located in London, England. It was founded in 1824 and houses a collection of over 2,300 paintings dating from the mid-13th century to the 20th century. The museum is located on Trafalgar Square and is free to enter.<br>
+
+						<br>The National Gallery is a popular tourist attraction and also hosts a range of educational programs, lectures, and temporary exhibitions throughout the year. It is a must-visit destination for art lovers and those interested in the history of Western art.<br>
+			
+					</div>
+					<div class="content">
+	                        <br>Visit Us At:<br><br>
+	                        National Galleryof Art<br>
+	                        Trafalgar Square,<br>
+	                        London WC2N 5DN, United Kingdom<br>
+	                   
+	                </div>
+	                <div class="content">
+	                   <br>Closed Monday<br><br>
+
+	                    Tuesday, Wednesday, Sunday : 10AM — 5PM<br><br>
+
+	                    Thursday, Friday, and Saturday : 10AM —6 PM<br><br>
+	                </div>
+	                <div class="content">
+	                    <br>Email : info@nga.art<br>
+
+	                    <br>Phone : 614.700.4130<br>
+	                </div>
+            </div>
+        </div>
+     	<script type="text/javascript" src="lib/jquery-3.6.4.min.js"></script>
+		<script type="text/javascript" src="lib/carousel.js"></script>
+		<script>
+        new Carousel({
+            element: $(".carousel").eq(0),
+            timing: 6000
+            })
+        </script>	
+		
+	</main>	
+	<footer>
+				<p>WNM 601 - Barkha Mandhana</p>
+	</footer>
+	
+
+</body>
+</html>
+
+
