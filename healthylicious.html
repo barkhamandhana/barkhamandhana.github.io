@@ -57,12 +57,49 @@
   function loadImages() {
     var container = document.getElementById('image-container');
     var imagePath = 'images/hl/';
-    for (var i = 0; i <= 21; i++) {
+/*    for (var i = 0; i <= 21; i++) {
       var img = document.createElement('img');
       img.src = imagePath + i + '.png';
       img.className = 'image3';
       container.appendChild(img);
-    }
+    }*/
+
+    for (var i = 0; i <= 21; i++) {
+        if (i === 1) {
+
+              var specialImg = document.createElement('img');
+              specialImg.src = "images/hl/portfolio.png";
+              specialImg.className = 'image3';
+              specialImg.alt = 'Portfolio';
+              specialImg.style.cursor = 'pointer'; // Change cursor to pointer to indicate it's clickable
+              specialImg.onclick = function() {
+                window.location.href = "https://www.figma.com/proto/oZgx53u62rWuHuhbOcwoJf/HealthyLicious-protoype?page-id=0%3A1&type=design&node-id=2-5787&viewport=827%2C252%2C0.17&t=f56PUkrqQcOsadJH-1&scaling=scale-down&starting-point-node-id=2%3A5787";
+              }; 
+          
+            container.appendChild(specialImg);
+                // Create and append the video image
+/*            var videoElement = document.createElement('video');
+        videoElement.autoplay = true;
+        videoElement.muted = true;
+        videoElement.className = 'hero-image';
+
+        // Create the source element for the video
+        var sourceElement = document.createElement('source');
+        sourceElement.src = 'images/video/hl.mov';
+        sourceElement.type = 'video/mp4';
+
+        // Add the source element to the video element
+        videoElement.appendChild(sourceElement);
+
+        // Add the video element to the container
+        container.appendChild(videoElement);*/
+          
+          }
+        var img = document.createElement('img');
+        img.src = imagePath + i + '.png';
+        img.className = 'image3';
+        container.appendChild(img);
+        } 
   }
 
   // Call the function to load images when the page is loaded

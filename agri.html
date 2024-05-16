@@ -54,6 +54,17 @@
     var container = document.getElementById('image-container');
     var imagePath = 'images/av/';
     for (var i = 1; i <= 22; i++) {
+                    if (i === 2) {
+    var specialImg = document.createElement('img');
+    specialImg.src = "images/av/portfolio.png";
+    specialImg.className = 'image3';
+    specialImg.alt = 'Portfolio';
+    specialImg.style.cursor = 'pointer'; // Change cursor to pointer to indicate it's clickable
+    specialImg.onclick = function() {
+      window.location.href = "https://www.figma.com/proto/ttph1O4Z7NP6orBTrsZ4xv/High-fiedility-wireframe-Ai-powered2?page-id=0%3A1&type=design&node-id=0-3&viewport=528%2C764%2C0.06&t=4I6WWso6RODIQYiW-1&scaling=scale-down&starting-point-node-id=0%3A3";
+    };
+    container.appendChild(specialImg);
+          }
       var img = document.createElement('img');
       img.src = imagePath + i + '.png';
       img.className = 'image3';
