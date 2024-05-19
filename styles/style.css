@@ -289,19 +289,23 @@ a{
 	border-radius: 10px;
 	position: relative;
 	overflow: hidden;
+	max-width: 85%; /* Limits the maximum width of the image to the container width */
+    max-height: 85%;
 }
 
 .work-group {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 20px; /* Adjust spacing between groups as needed */
+    justify-content: right;
+
+   
 }
 
 .work img{
 	 width: auto; /* Ensures the image width is automatically determined */
     height: auto; /* Ensures the image height is automatically determined */
-    max-width: 80%; /* Limits the maximum width of the image to the container width */
-    max-height: 80%; /* Limits the maximum height of the image to the container height */
+    max-width: 85%; /* Limits the maximum width of the image to the container width */
+    max-height: 85%; /* Limits the maximum height of the image to the container height */
     
 /*	width: 100%;
 	border-radius: 10px;

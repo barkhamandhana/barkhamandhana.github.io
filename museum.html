@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthylicious</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/language.jss">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <style>
+        #image-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .media {
+            margin: 0px;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .navleft, .navright {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <link rel="preload" href="images/museum/0.png" as="image">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html">
+                    <img src="images/logo.png" alt="bmm" class="logo">
+                </a>
+                <ul class="navigation">
+                    <li class="navlist"><a href="index.html#portfolio">Portfolio</a></li>
+                    <li class="navlist"><a href="index.html#about">About</a></li>
+                    <li class="navlist"><a href="index.html#contact">Contact</a></li>
+                    <li class="navlist"><a href="resume.html">Resume</a></li>
+                    <i class="fas fa-times" onclick="closemenu()"></i>
+                </ul>
+                <i class="fas fa-bars" onclick="openemenu()"></i>
+            </nav>
+        </div>
+    </header>
+
+    <div id="image-container"></div>
+    <div class="image-container">
+        <a href="healthyliciousV2.html">
+            <img src="images/museum/navleft.png" class="navleft" alt="Nav Left">
+        </a>
+        <a href="furry.html">
+            <img src="images/museum/navright.png" class="navright" alt="Nav Right">
+        </a>
+    </div>
+
+    <script>
+        const projectMeta = {
+            imagePath: 'images/museum/',
+            startImage: 0,
+            endImage: 13,
+            portfolioImage: 2,
+            videoName: 'demo.mov',
+            figmaLink: 'https://www.figma.com/proto/efsbADWRAqdEyqL4Gv8KZh/prototype-after-test-furry-heaven?page-id=0%3A1&type=design&node-id=82-216&viewport=492%2C225%2C0.03&t=CPmHZHxe0xg24k5v-1&scaling=scale-down&mode=design',
+            specialImages: [
+                { src: 'images/museum/2.png', url: 'https://barkhamandhana.github.io/museum/project/index.html' }
+            ]
+        };
+
+        // Function to load an image and return a promise
+        function loadImage(src, container) {
+            return new Promise((resolve, reject) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.className = 'media';
+                img.onload = () => {
+                    container.appendChild(img);
+                    resolve();
+                };
+                img.onerror = reject;
+            });
+        }
+
+        // Function to load a video and return a promise
+        function loadVideo(src, container) {
+            return new Promise((resolve, reject) => {
+                const video = document.createElement('video');
+                video.src = src;
+                video.className = 'media';
+                video.controls = true;
+                video.onloadeddata = () => {
+                    container.appendChild(video);
+                    resolve();
+                };
+                video.onerror = reject;
+            });
+        }
+
+        // Function to load special images
+        function loadSpecialImage(src, container, url) {
+            return new Promise((resolve, reject) => {
+                const specialImg = document.createElement('img');
+                specialImg.src = src;
+                specialImg.className = 'media';
+                specialImg.alt = 'Portfolio';
+                specialImg.style.cursor = 'pointer';
+                specialImg.onclick = () => {
+                    window.location.href = url;
+                };
+                specialImg.onload = () => {
+                    container.appendChild(specialImg);
+                    resolve();
+                };
+                specialImg.onerror = reject;
+            });
+        }
+
+        // Function to load images and video sequentially
+        async function loadMedia() {
+            const container = document.getElementById('image-container');
+            for (let i = projectMeta.startImage; i <= projectMeta.endImage; i++) {
+                if (i === projectMeta.portfolioImage) {
+                    for (const specialImage of projectMeta.specialImages) {
+                        await loadSpecialImage(specialImage.src, container, specialImage.url);
+                    }
+                
+                } else {
+                    await loadImage(projectMeta.imagePath + i + '.png', container);
+                }
+            }
+        }
+
+        // Lazy load images when they enter the viewport
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.media').forEach(media => {
+                observer.observe(media);
+            });
+        });
+
+        // Call the function to load images when the page is loaded
+        window.onload = loadMedia;
+    </script>
+    <script async src="scripts.js"></script>
+</body>
+</html>

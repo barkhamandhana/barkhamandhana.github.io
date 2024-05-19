@@ -44,10 +44,10 @@
 
     <div id="image-container"></div>
     <div class="image-container"> 
-        <a href="healthylicious.html">
+        <a href="healthyliciousV2.html">
             <img src="images/pp/navleft.png" class="navleft" alt="Nav Left">
         </a>
-        <a href="furry.html">
+        <a href="furryV2.html">
             <img src="images/pp/navright.png" class="navright" alt="Nav Right">
         </a>
     </div>
@@ -68,23 +68,23 @@
         }
 
         // Function to load special images
-        function loadSpecialImage(src, container, url) {
-            return new Promise((resolve, reject) => {
-                const specialImg = document.createElement('img');
-                specialImg.src = src;
-                specialImg.className = 'image3';
-                specialImg.alt = 'Portfolio';
-                specialImg.style.cursor = 'pointer';
-                specialImg.onclick = () => {
-                    window.location.href = url;
-                };
-                specialImg.onload = () => {
-                    container.appendChild(specialImg);
-                    resolve();
-                };
-                specialImg.onerror = reject;
-            });
-        }
+function loadSpecialImage(src, container, url) {
+    return new Promise((resolve, reject) => {
+        const specialImg = document.createElement('img');
+        specialImg.src = src;
+        specialImg.className = 'media';
+        specialImg.alt = 'Portfolio';
+        specialImg.style.cursor = 'pointer';
+        specialImg.onclick = () => {
+            window.open(url, '_blank'); // Opens the URL in a new tab
+        };
+        specialImg.onload = () => {
+            container.appendChild(specialImg);
+            resolve();
+        };
+        specialImg.onerror = reject;
+    });
+}
 
         // Function to load images sequentially
         async function loadImages() {
