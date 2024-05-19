@@ -45,10 +45,10 @@
     <div id="image-container"></div>
     <div class="image-container"> 
         <a href="healthyliciousV2.html">
-            <img src="images/pp/navleft.png" class="navleft" alt="Nav Left">
+            <img src="images/ppV2/navleft.png" class="navleft" alt="Nav Left">
         </a>
         <a href="furryV2.html">
-            <img src="images/pp/navright.png" class="navright" alt="Nav Right">
+            <img src="images/ppV2/navright.png" class="navright" alt="Nav Right">
         </a>
     </div>
 
@@ -72,7 +72,7 @@ function loadSpecialImage(src, container, url) {
     return new Promise((resolve, reject) => {
         const specialImg = document.createElement('img');
         specialImg.src = src;
-        specialImg.className = 'media';
+        specialImg.className = 'image3';
         specialImg.alt = 'Portfolio';
         specialImg.style.cursor = 'pointer';
         specialImg.onclick = () => {
@@ -89,18 +89,18 @@ function loadSpecialImage(src, container, url) {
         // Function to load images sequentially
         async function loadImages() {
             const container = document.getElementById('image-container');
-            const imagePath = 'images/pp/';
+            const imagePath = 'images/ppV2/';
             const specialImages = [
-                { src: 'images/pp/portfolio.png', url: 'https://www.figma.com/proto/Z252yzFJc2olQ8HHS7GwkW/Untitled?type=design&node-id=11-5&scaling=scale-down&page-id=0%3A1&starting-point-node-id=11%3A5' },
-                { src: 'images/pp/portfolio1.png', url: 'https://www.figma.com/proto/T4Mf4MyHtySsNpkElKHB5S/Puranpoli-Website?page-id=0%3A1&type=design&node-id=31-401&scaling=scale-down&starting-point-node-id=61%3A85&t=prfHmtPSiLihWHbx-1' }
+                { src: 'images/ppV2/portfolio.png', url: 'https://www.figma.com/proto/Z252yzFJc2olQ8HHS7GwkW/Untitled?type=design&node-id=11-5&scaling=scale-down&page-id=0%3A1&starting-point-node-id=11%3A5' },
+                { src: 'images/ppV2/portfolio1.png', url: 'https://www.figma.com/proto/T4Mf4MyHtySsNpkElKHB5S/Puranpoli-Website?page-id=0%3A1&type=design&node-id=31-401&scaling=scale-down&starting-point-node-id=61%3A85&t=prfHmtPSiLihWHbx-1' }
             ];
 
-            for (let i = 0; i <= 20; i++) {
-                if (i === 1) {
+            for (let i = 0; i <= 21; i++) {
+                if (i === 2) {
                     for (const specialImage of specialImages) {
                         await loadSpecialImage(specialImage.src, container, specialImage.url);
                     }
-                }
+                } else
                 await loadImage(imagePath + i + '.png', container);
             }
         }
