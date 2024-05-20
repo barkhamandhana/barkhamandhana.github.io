@@ -126,29 +126,29 @@ function loadSpecialImage(src, container, url) {
                     for (const specialImage of projectMeta.specialImages) {
                         await loadSpecialImage(specialImage.src, container, specialImage.url);
                     }
-                    await loadVideo(projectMeta.imagePath + projectMeta.videoName, container);
+                    loadVideo(projectMeta.imagePath + projectMeta.videoName, container);
                 } else {
                     await loadImage(projectMeta.imagePath + i + '.png', container);
                 }
             }
         }
 
-        // Lazy load images when they enter the viewport
-        document.addEventListener('DOMContentLoaded', function() {
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        observer.unobserve(img);
-                    }
-                });
-            });
+        // // Lazy load images when they enter the viewport
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const observer = new IntersectionObserver((entries, observer) => {
+        //         entries.forEach(entry => {
+        //             if (entry.isIntersecting) {
+        //                 const img = entry.target;
+        //                 img.src = img.dataset.src;
+        //                 observer.unobserve(img);
+        //             }
+        //         });
+        //     });
 
-            document.querySelectorAll('.media').forEach(media => {
-                observer.observe(media);
-            });
-        });
+        //     document.querySelectorAll('.media').forEach(media => {
+        //         observer.observe(media);
+        //     });
+        // });
 
         // Call the function to load images when the page is loaded
         window.onload = loadMedia;
