@@ -132,25 +132,8 @@ function loadSpecialImage(src, container, url) {
             }
         }
 
-        // // Lazy load images when they enter the viewport
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     const observer = new IntersectionObserver((entries, observer) => {
-        //         entries.forEach(entry => {
-        //             if (entry.isIntersecting) {
-        //                 const img = entry.target;
-        //                 img.src = img.dataset.src;
-        //                 observer.unobserve(img);
-        //             }
-        //         });
-        //     });
-
-        //     document.querySelectorAll('.media').forEach(media => {
-        //         observer.observe(media);
-        //     });
-        // });
-
         // Call the function to load images when the page is loaded
-        window.onload = loadMedia;
+        loadMedia();
     </script>
     <script src="scripts.js"></script>
 </body>
