@@ -125,7 +125,7 @@ function loadSpecialImage(src, container, url) {
                     for (const specialImage of projectMeta.specialImages) {
                         await loadSpecialImage(specialImage.src, container, specialImage.url);
                     }
-                    loadVideo(projectMeta.imagePath + projectMeta.videoName, container);
+                    await loadVideo(projectMeta.imagePath + projectMeta.videoName, container);
                 } else {
                     await loadImage(projectMeta.imagePath + i + '.png', container);
                 }
