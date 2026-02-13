@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine Wishes</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.container {
+    width: 95%;
+    max-width: 420px;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.valentine-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 30px;
+    color: #e91e63;
+    margin-bottom: 5px;
+}
+
+.names {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.scratch-container {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.reveal-message {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ffe0ec, #ffd6e0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 600;
+    color: #c2185b;
+    padding: 20px;
+    text-align: center;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.instructions {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #888;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="valentine-text">Happy Valentine’s Day ❤️</div>
+    <div class="names">With love, Barkha & Aniket</div>
+
+    <div class="scratch-container">
+        <div class="reveal-message">
+            Our hearts are growing… 👶💖<br>
+            We Are Having A Baby!
+        </div>
+        <canvas id="scratchCanvas"></canvas>
+    </div>
+
+    <div class="instructions">Scratch for our Valentine’s Wishes 💕</div>
+</div>
+
+<script>
+const canvas = document.getElementById("scratchCanvas");
+const ctx = canvas.getContext("2d");
+
+const container = document.querySelector(".scratch-container");
+canvas.width = container.offsetWidth;
+canvas.height = container.offsetHeight;
+
+// Create scratch layer
+ctx.fillStyle = "#d81b60";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+// Add text on scratch layer
+ctx.fillStyle = "#ffffff";
+ctx.font = "bold 20px Poppins";
+ctx.textAlign = "center";
+ctx.fillText("Scratch Here 💖", canvas.width / 2, canvas.height / 2);
+
+let isDrawing = false;
+
+function getXY(e) {
+    const rect = canvas.getBoundingClientRect();
+    if (e.touches) {
+        return {
+            x: e.touches[0].clientX - rect.left,
+            y: e.touches[0].clientY - rect.top
+        };
+    }
+    return {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top
+    };
+}
+
+function scratch(e) {
+    if (!isDrawing) return;
+    e.preventDefault();
+    const {x, y} = getXY(e);
+
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.beginPath();
+    ctx.arc(x, y, 22, 0, Math.PI * 2);
+    ctx.fill();
+}
+
+canvas.addEventListener("mousedown", () => isDrawing = true);
+canvas.addEventListener("mouseup", () => isDrawing = false);
+canvas.addEventListener("mousemove", scratch);
+
+canvas.addEventListener("touchstart", () => isDrawing = true);
+canvas.addEventListener("touchend", () => isDrawing = false);
+canvas.addEventListener("touchmove", scratch);
+</script>
+
+</body>
+</html>
