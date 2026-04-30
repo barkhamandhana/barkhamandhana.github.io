@@ -7,21 +7,13 @@
 <style>
     body {
         margin: 0;
-        font-family: 'Arial', sans-serif;
-        background: radial-gradient(circle at top, #ffe4ec, #cfe8ff);
+        font-family: Arial;
         text-align: center;
+        background: radial-gradient(circle, #ffe4ec, #cfe8ff);
         padding: 25px;
     }
 
-    h1 {
-        margin-bottom: 5px;
-        font-size: 28px;
-    }
-
-    p {
-        margin-top: 0;
-        color: #444;
-    }
+    h1 { margin-bottom: 5px; }
 
     .board {
         display: grid;
@@ -37,13 +29,8 @@
         height: 110px;
         border-radius: 16px;
         overflow: hidden;
-        background: linear-gradient(135deg, #ffffff, #f7f7f7);
+        background: white;
         box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-        transition: transform 0.2s ease;
-    }
-
-    .cell:hover {
-        transform: scale(1.03);
     }
 
     .label {
@@ -56,7 +43,6 @@
         align-items: center;
         justify-content: center;
         z-index: 0;
-        color: #222;
     }
 
     canvas {
@@ -64,11 +50,10 @@
         top: 0;
         left: 0;
         z-index: 2;
-        cursor: pointer;
     }
 
     .locked {
-        opacity: 0.45;
+        opacity: 0.4;
     }
 
     #final {
@@ -77,17 +62,6 @@
         font-size: 34px;
         font-weight: bold;
         color: #0066ff;
-        animation: pop 0.6s ease;
-    }
-
-    @keyframes pop {
-        from { transform: scale(0.5); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
-    }
-
-    .subtitle {
-        font-size: 14px;
-        color: #666;
     }
 </style>
 </head>
@@ -95,7 +69,7 @@
 <body>
 
 <h1>🎉 Scratch Bingo Reveal 🎉</h1>
-<p class="subtitle">Scratch each box one by one 👇</p>
+<p>Scratch one box at a time 👇</p>
 
 <div class="board" id="board"></div>
 
@@ -105,24 +79,15 @@
 
 const board = document.getElementById("board");
 
-const TOTAL = 9;
 let current = 0;
+const TOTAL = 9;
 
-// controlled mix (feels fair + suspenseful)
-const outcomes = [
-    "It's a Girl 💖",
-    "It's a Boy 💙",
-    "It's a Girl 💖",
-    "It's a Boy 💙",
-    "It's a Girl 💖",
-    "It's a Boy 💙",
-    "It's a Girl 💖",
-    "It's a Boy 💙",
-    "It's a Boy 💙"
+// 🎯 STRUCTURED GRID (your requirement)
+const grid = [
+    "It's a Girl 💖",   "??? 🤔",            "It's a Boy 💙",
+    "??? 🤔",           "It's a Boy 💙",    "??? 🤔",
+    "It's a Girl 💖",   "??? 🤔",            "It's a Boy 💙"
 ];
-
-// shuffle for natural feel
-outcomes.sort(() => Math.random() - 0.5);
 
 function createCell(index) {
 
@@ -131,7 +96,7 @@ function createCell(index) {
 
     const label = document.createElement("div");
     label.className = "label";
-    label.innerText = "Scratch Me ✨";
+    label.innerText = "Scratch ✨";
 
     const canvas = document.createElement("canvas");
     canvas.width = 110;
@@ -139,7 +104,7 @@ function createCell(index) {
 
     const ctx = canvas.getContext("2d");
 
-    // scratch overlay
+    // scratch layer
     ctx.fillStyle = "#c0c0c0";
     ctx.fillRect(0, 0, 110, 110);
     ctx.fillStyle = "#444";
@@ -155,7 +120,7 @@ function createCell(index) {
         ctx.fill();
     }
 
-    function handleStart(e) {
+    function start(e) {
         if (index !== current) return;
 
         isDrawing = true;
@@ -167,7 +132,7 @@ function createCell(index) {
         scratch(x, y);
     }
 
-    function handleMove(e) {
+    function move(e) {
         if (!isDrawing || index !== current) return;
 
         const rect = canvas.getBoundingClientRect();
@@ -178,14 +143,14 @@ function createCell(index) {
         scratch(x, y);
     }
 
-    function handleEnd() {
+    function end() {
         if (index !== current) return;
 
         isDrawing = false;
 
-        // reveal result cleanly (no flicker, no animation bugs)
+        // reveal stable text (NO animation, NO flicker)
         canvas.style.display = "none";
-        label.innerText = outcomes[index];
+        label.innerText = grid[index];
 
         current++;
 
@@ -196,17 +161,15 @@ function createCell(index) {
         }
     }
 
-    canvas.addEventListener("mousedown", handleStart);
-    canvas.addEventListener("mousemove", handleMove);
-    canvas.addEventListener("mouseup", handleEnd);
+    canvas.addEventListener("mousedown", start);
+    canvas.addEventListener("mousemove", move);
+    canvas.addEventListener("mouseup", end);
 
-    canvas.addEventListener("touchstart", handleStart);
-    canvas.addEventListener("touchmove", handleMove);
-    canvas.addEventListener("touchend", handleEnd);
+    canvas.addEventListener("touchstart", start);
+    canvas.addEventListener("touchmove", move);
+    canvas.addEventListener("touchend", end);
 
-    if (index !== 0) {
-        cell.classList.add("locked");
-    }
+    if (index !== 0) cell.classList.add("locked");
 
     cell.appendChild(label);
     cell.appendChild(canvas);
