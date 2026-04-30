@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gender Reveal Scratch Bingo</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        background: radial-gradient(circle at top, #ffe4ec, #cfe8ff);
+        text-align: center;
+        padding: 25px;
+    }
+
+    h1 {
+        margin-bottom: 5px;
+        font-size: 28px;
+    }
+
+    p {
+        margin-top: 0;
+        color: #444;
+    }
+
+    .board {
+        display: grid;
+        grid-template-columns: repeat(3, 110px);
+        gap: 14px;
+        justify-content: center;
+        margin-top: 25px;
+    }
+
+    .cell {
+        position: relative;
+        width: 110px;
+        height: 110px;
+        border-radius: 16px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #ffffff, #f7f7f7);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+        transition: transform 0.2s ease;
+    }
+
+    .cell:hover {
+        transform: scale(1.03);
+    }
+
+    .label {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        font-size: 15px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 0;
+        color: #222;
+    }
+
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        cursor: pointer;
+    }
+
+    .locked {
+        opacity: 0.45;
+    }
+
+    #final {
+        display: none;
+        margin-top: 30px;
+        font-size: 34px;
+        font-weight: bold;
+        color: #0066ff;
+        animation: pop 0.6s ease;
+    }
+
+    @keyframes pop {
+        from { transform: scale(0.5); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    .subtitle {
+        font-size: 14px;
+        color: #666;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>🎉 Scratch Bingo Reveal 🎉</h1>
+<p class="subtitle">Scratch each box one by one 👇</p>
+
+<div class="board" id="board"></div>
+
+<div id="final">💙 FINAL REVEAL: IT'S A BABY BOY! 💙</div>
+
+<script>
+
+const board = document.getElementById("board");
+
+const TOTAL = 9;
+let current = 0;
+
+// controlled mix (feels fair + suspenseful)
+const outcomes = [
+    "It's a Girl 💖",
+    "It's a Boy 💙",
+    "It's a Girl 💖",
+    "It's a Boy 💙",
+    "It's a Girl 💖",
+    "It's a Boy 💙",
+    "It's a Girl 💖",
+    "It's a Boy 💙",
+    "It's a Boy 💙"
+];
+
+// shuffle for natural feel
+outcomes.sort(() => Math.random() - 0.5);
+
+function createCell(index) {
+
+    const cell = document.createElement("div");
+    cell.className = "cell";
+
+    const label = document.createElement("div");
+    label.className = "label";
+    label.innerText = "Scratch Me ✨";
+
+    const canvas = document.createElement("canvas");
+    canvas.width = 110;
+    canvas.height = 110;
+
+    const ctx = canvas.getContext("2d");
+
+    // scratch overlay
+    ctx.fillStyle = "#c0c0c0";
+    ctx.fillRect(0, 0, 110, 110);
+    ctx.fillStyle = "#444";
+    ctx.font = "12px Arial";
+    ctx.fillText("Scratch", 30, 60);
+
+    let isDrawing = false;
+
+    function scratch(x, y) {
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.beginPath();
+        ctx.arc(x, y, 15, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    function handleStart(e) {
+        if (index !== current) return;
+
+        isDrawing = true;
+        const rect = canvas.getBoundingClientRect();
+
+        const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+        const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+
+        scratch(x, y);
+    }
+
+    function handleMove(e) {
+        if (!isDrawing || index !== current) return;
+
+        const rect = canvas.getBoundingClientRect();
+
+        const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+        const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+
+        scratch(x, y);
+    }
+
+    function handleEnd() {
+        if (index !== current) return;
+
+        isDrawing = false;
+
+        // reveal result cleanly (no flicker, no animation bugs)
+        canvas.style.display = "none";
+        label.innerText = outcomes[index];
+
+        current++;
+
+        if (current < TOTAL) {
+            board.children[current].classList.remove("locked");
+        } else {
+            document.getElementById("final").style.display = "block";
+        }
+    }
+
+    canvas.addEventListener("mousedown", handleStart);
+    canvas.addEventListener("mousemove", handleMove);
+    canvas.addEventListener("mouseup", handleEnd);
+
+    canvas.addEventListener("touchstart", handleStart);
+    canvas.addEventListener("touchmove", handleMove);
+    canvas.addEventListener("touchend", handleEnd);
+
+    if (index !== 0) {
+        cell.classList.add("locked");
+    }
+
+    cell.appendChild(label);
+    cell.appendChild(canvas);
+    board.appendChild(cell);
+}
+
+function init() {
+    board.innerHTML = "";
+    current = 0;
+    document.getElementById("final").style.display = "none";
+
+    for (let i = 0; i < TOTAL; i++) {
+        createCell(i);
+    }
+}
+
+init();
+
+</script>
+
+</body>
+</html>
